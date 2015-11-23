@@ -1,0 +1,20 @@
+﻿@model WiredHack153Web.Models.AccountDisplayViewModel
+@{
+    ViewBag.Title = "Job Name";
+    Layout = "~/Views/Shared/_LayoutAccountInfo.cshtml";
+}
+
+<div class="jumbotron">
+    <div class="section">
+        <h2> @Model.JobName </h2>
+        <p> @Model.JobBaseSalary </p>
+    </div>
+</div>
+<div class="well">
+    <div class="section">
+        <div class="page-header border-top">
+            <h2>Career Cluster Info</h2>
+        </div>
+        @Html.Partial("DisplayPartials/_CareerClusterPartial")
+    </div>
+</div>

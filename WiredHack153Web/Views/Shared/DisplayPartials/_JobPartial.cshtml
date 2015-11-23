@@ -1,0 +1,16 @@
+﻿<div class="row">
+    <div class="col-md-4">
+        
+        <h2><a href="@Url.Action("JobDisplay", "Account")?Id=@Model.AccJobId">@Model.JobName</a>
+        </h2>
+        <p>$@Model.JobBaseSalary</p>
+    </div>
+    <div class="col-md-7 col-md-offset-1 border-top-xs">
+        @Html.Partial("DisplayPartials/_EmployerPartial")
+    </div>
+
+</div>
+
+<div class="section border-top">
+    @Html.Partial("DisplayPartials/_CareerClusterPartial")
+</div>

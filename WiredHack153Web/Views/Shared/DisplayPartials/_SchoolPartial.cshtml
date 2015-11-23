@@ -1,0 +1,30 @@
+﻿<!--Bio
+Employer Ref
+Pay Rate
+Career Cluster Ref
+-->
+<div class="row">
+    <img class="col-md-4" src="@{
+                                                    if (Model.UniLogo.Equals(""))
+                                                    {
+                                                        @Html.Raw("http://i1.wp.com/www.techrepublic.com/bundles/techrepubliccore/images/icons/standard/icon-user-default.png")
+                                                    }
+                                                    else
+                                                    {
+                                                        @Html.Raw(Model.UniLogo)
+                                                    }}" />
+    <div class="col-md-9">
+        <h2> <a href="@Url.Action("SchoolDisplay", "Account")?Id=@Model.UniID">@Model.UniName</a></h2>
+        <h3>@Model.UniAddress</h3>
+        <p>@Model.UniCity @Model.UniState, @Model.UniZip </p>
+        <p>@Model.UniCounty</p>
+        
+    </div>
+</div>
+<div>
+    <p>@Model.UniDescription</p>
+
+</div>
+<div class="border-top">
+    @Model.MajorDescription
+</div>

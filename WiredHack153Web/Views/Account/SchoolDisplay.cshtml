@@ -1,0 +1,34 @@
+﻿@model WiredHack153Web.Models.AccountDisplayViewModel
+@{
+    ViewBag.Title = "SchoolDisplay";
+    Layout = "~/Views/Shared/_LayoutAccountInfo.cshtml";
+}
+
+<div class="jumbotron">
+    <div class="row">
+        <img class="col-md-4" src="@{
+                                                    if (Model.UniLogo.Equals(""))
+                                                    {
+                                                        @Html.Raw("http://i1.wp.com/www.techrepublic.com/bundles/techrepubliccore/images/icons/standard/icon-user-default.png")
+                                                    }
+                                                    else
+                                                    {
+                                                        @Html.Raw(Model.UniLogo)
+                                                    }}" />
+
+        <div class="accountInfo col-md-8">
+            <h2> @Model.UniName</h2>
+            <p> @Model.UniAddress </p>
+            <p>@Model.UniCity @Model.UniState, @Model.UniZip</p>
+            <p>@Model.UniCounty</p>
+        </div>
+    </div>
+    <div class="section">
+        @Model.UniDescription
+    </div>
+
+
+</div>
+<div class="well">
+    <h1>Show Uni Majors</h1>
+</div>

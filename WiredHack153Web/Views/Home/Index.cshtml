@@ -1,0 +1,22 @@
+﻿
+<div class="container">
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-md-4 col-md-offset-2"><a href="@Url.Action("Index", "CareerCluster")"<span id="CCChart"></span></a></div>
+        <div class="col-md-4" id="EmpChart"></div>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-md-4 col-md-offset-2"><button class="btn btn-primary">Button 3</button></div>
+        <div class="col-md-4"><button class="btn btn-primary">Button 4</button></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $.ajax({
+            method: 'GET',
+            url: '/API/HomeCC'
+        }).done(function (result) {
+            $('#CCChart').highcharts(JSON.parse(result));
+        });
+    });
+</script>

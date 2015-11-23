@@ -1,0 +1,29 @@
+﻿@model IEnumerable<WiredHack153Web.Models.EmployeeProfileThumb>
+
+@{
+    ViewBag.Title = "Employees";
+}
+
+<div class="container">
+    <div class="row">
+        <h2>Employees</h2>
+    </div>
+    @foreach (var item in Model)
+    {
+        <div class="row" style="padding-top: 10px;">
+            <div class="col-md-3">
+                <img class="accountImage" src="@item.Image" /><br />
+                <a href="@Url.Action("AccountDisplay", "Account", new { id = item.EmployeeID })">@item.Name</a>
+            </div>
+            <div class="col-md-4">
+                @item.JobTitle<br />
+                @item.College<br />
+                @item.Major<br />
+                @Html.ActionLink(item.Employer, "Employers", new { id = item.EmployerID })
+            </div>
+            <div class="col-md-5">
+                @item.Bio
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,35 @@
+﻿@model WiredHack153Web.Models.AccountDisplayViewModel
+@{
+    ViewBag.Title = "Employer Name";
+    Layout = "~/Views/Shared/_LayoutAccountInfo.cshtml";
+}
+
+<div class="jumbotron">
+    <div class="row">
+        <img class="col-md-4" src="@{
+                                                    if (Model.EmployerLogo.Equals(""))
+                                                    {
+                                                        @Html.Raw("http://i1.wp.com/www.techrepublic.com/bundles/techrepubliccore/images/icons/standard/icon-user-default.png")
+                                                    }
+                                                    else
+                                                    {
+                                                        @Html.Raw(Model.EmployerLogo)
+                                                    }}"/>
+        <div class="col-md-8">
+            <h2> @Model.EmployerName </h2>
+            <p>@Model.EmployerDescription</p>
+            <p>@Html.Raw(@Model.EmployerAddress)</p>
+            <p>@Model.EmployerCity @Model.EmployerState, @Model.EmployerZip</p>
+            <p>@Model.EmployerCounty</p>
+            <p>@Model.EmployerPhone</p>
+            <p>@Model.EmployerAmtOfEmployees</p>
+        </div>
+
+    </div>
+    
+
+
+</div>
+<div class="well">
+    <h1>Show Employer Jobs</h1>
+</div>

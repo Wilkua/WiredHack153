@@ -1,0 +1,85 @@
+﻿@model WiredHack153Web.Models.CareerClustersModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <div class="row">
+        <h2>Career Clusters</h2>
+    </div>
+    @foreach (var item in Model.Clusters)
+    {
+        <div class="row">
+            <div class="col-md-4">
+               <h3>@Html.ActionLink(item.Name, "Employees", new { id = item.Id })</h3>
+                @item.Description
+            </div>
+            <div class="col-md-4" id="@item.JobID"></div>
+            <div class="col-md-4" id="@item.SchoolID"></div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+
+    var CareerClusterList;
+
+    function GetCareerClusters()
+    {
+        var defer = $.Deferred();
+
+        $.ajax({
+            method: 'GET',
+            url: '/API/CareerClusters'
+        }).done(function (result) {
+            CareerClusterList = JSON.parse(result);
+            console.log("yes");
+            defer.resolve();
+        }).fail(function (result) {
+            console.log("no");
+            defer.reject();
+        });
+
+        return defer.promise();
+    }
+
+    function GenerateSchoolInfoChart(id)
+    {
+        $.ajax({
+            method: "GET",
+            url: "/API/SchoolChart?ccid=" + id
+        }).done(function (result) {
+            $('#SchoolChart' + id).highcharts(JSON.parse(result));
+        });
+    }
+
+    function GenerateJobInfoChart(id)
+    {
+        $.ajax({
+            method: "GET",
+            url: "/API/JobsChart?ccid=" + id
+        }).done(function (result) {
+            $('#JobChart' + id).highcharts(JSON.parse(result));
+        });
+    }
+
+    function GenerateRows()
+    {
+        $.ajax({
+            method: "GET",
+            url: "/API/CareerClusters"
+        }).done(function (result) {
+            for (var idx in JSON.parse(result))
+            {
+                var item = JSON.parse(result)[idx];
+                GenerateSchoolInfoChart(parseInt(item.CCId));
+                GenerateJobInfoChart(parseInt(item.CCId));
+            }
+        });
+    }
+
+    $(function () {
+        GenerateRows();
+    })
+</script>
+

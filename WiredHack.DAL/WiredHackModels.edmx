@@ -1,0 +1,1092 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WiredHackModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CareerClusters">
+          <Key>
+            <PropertyRef Name="CCId" />
+          </Key>
+          <Property Name="CCId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="EmployeeJobConnections">
+          <Key>
+            <PropertyRef Name="ConID" />
+          </Key>
+          <Property Name="ConID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobId" Type="int" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="PayRate" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="JobID" Type="int" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="State" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Zip" Type="int" Nullable="false" />
+          <Property Name="County" Type="nvarchar(max)" />
+          <Property Name="Image" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ProgramID" Type="int" />
+          <Property Name="UniversityID" Type="int" Nullable="false" />
+          <Property Name="MajorID" Type="int" Nullable="false" />
+          <Property Name="EmployeeJobConnection_ConID" Type="int" />
+          <Property Name="University_Id" Type="int" Nullable="false" />
+          <Property Name="Major_Id" Type="int" Nullable="false" />
+          <Property Name="GraduationDate" Type="datetime" Nullable="false" />
+          <Property Name="Bio" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Employers">
+          <Key>
+            <PropertyRef Name="EmployerID" />
+          </Key>
+          <Property Name="EmployerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Address2" Type="nvarchar(max)" />
+          <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="State" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Zip" Type="int" Nullable="false" />
+          <Property Name="County" Type="nvarchar(max)" />
+          <Property Name="IndustryID" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AmtOfEmployees" Type="int" />
+          <Property Name="Logo" Type="nvarchar(max)" />
+          <Property Name="Job_JobID" Type="int" />
+          <Property Name="Industry_IndustryId" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="Phone" Type="varchar" MaxLength="15" />
+          <Property Name="NumEmployees" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Industries">
+          <Key>
+            <PropertyRef Name="IndustryId" />
+          </Key>
+          <Property Name="IndustryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JobCCConnections">
+          <Key>
+            <PropertyRef Name="ConID" />
+          </Key>
+          <Property Name="ConID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobID" Type="int" Nullable="false" />
+          <Property Name="CCID" Type="int" Nullable="false" />
+          <Property Name="CareerCluster_CCId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Jobs">
+          <Key>
+            <PropertyRef Name="JobID" />
+          </Key>
+          <Property Name="JobID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployerID" Type="int" />
+          <Property Name="BaseSalary" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PayTypeID" Type="int" Nullable="false" />
+          <Property Name="JobCCConnection_ConID" Type="int" />
+          <Property Name="EmployeeJobConnection_ConID" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Majors">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Program_ProgramID" Type="int" />
+        </EntityType>
+        <EntityType Name="PayTypes">
+          <Key>
+            <PropertyRef Name="PayTypeID" />
+          </Key>
+          <Property Name="PayTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Job_JobID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Programs">
+          <Key>
+            <PropertyRef Name="ProgramID" />
+          </Key>
+          <Property Name="ProgramID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MajorID" Type="int" />
+        </EntityType>
+        <EntityType Name="Universities">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="State" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Zip" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="County" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Logo" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserEmployeeConnection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="IsAdmin" Type="bit" Nullable="false" />
+          <Property Name="EmployerID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="250" />
+          <Property Name="LastName" Type="varchar" MaxLength="250" />
+          <Property Name="EmployeeId" Type="int" />
+          <Property Name="EmployerId" Type="int" />
+          <Property Name="Username" Type="varchar" MaxLength="250" />
+          <Property Name="Salt" Type="varchar(max)" />
+          <Property Name="PasswordHash" Type="varchar(max)" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="Email" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <Association Name="FK_CareerClusterJobCCConnection">
+          <End Role="CareerClusters" Type="Self.CareerClusters" Multiplicity="1" />
+          <End Role="JobCCConnections" Type="Self.JobCCConnections" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CareerClusters">
+              <PropertyRef Name="CCId" />
+            </Principal>
+            <Dependent Role="JobCCConnections">
+              <PropertyRef Name="CareerCluster_CCId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeJobConnectionEmployee">
+          <End Role="EmployeeJobConnections" Type="Self.EmployeeJobConnections" Multiplicity="0..1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeJobConnections">
+              <PropertyRef Name="ConID" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="EmployeeJobConnection_ConID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeJobConnectionJob">
+          <End Role="EmployeeJobConnections" Type="Self.EmployeeJobConnections" Multiplicity="0..1" />
+          <End Role="Jobs" Type="Self.Jobs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeJobConnections">
+              <PropertyRef Name="ConID" />
+            </Principal>
+            <Dependent Role="Jobs">
+              <PropertyRef Name="EmployeeJobConnection_ConID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IndustryEmployer">
+          <End Role="Industries" Type="Self.Industries" Multiplicity="0..1" />
+          <End Role="Employers" Type="Self.Employers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Industries">
+              <PropertyRef Name="IndustryId" />
+            </Principal>
+            <Dependent Role="Employers">
+              <PropertyRef Name="Industry_IndustryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobCCConnectionJob">
+          <End Role="JobCCConnections" Type="Self.JobCCConnections" Multiplicity="0..1" />
+          <End Role="Jobs" Type="Self.Jobs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobCCConnections">
+              <PropertyRef Name="ConID" />
+            </Principal>
+            <Dependent Role="Jobs">
+              <PropertyRef Name="JobCCConnection_ConID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobEmployer">
+          <End Role="Jobs" Type="Self.Jobs" Multiplicity="0..1" />
+          <End Role="Employers" Type="Self.Employers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jobs">
+              <PropertyRef Name="JobID" />
+            </Principal>
+            <Dependent Role="Employers">
+              <PropertyRef Name="Job_JobID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobPayTypes">
+          <End Role="Jobs" Type="Self.Jobs" Multiplicity="1" />
+          <End Role="PayTypes" Type="Self.PayTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jobs">
+              <PropertyRef Name="JobID" />
+            </Principal>
+            <Dependent Role="PayTypes">
+              <PropertyRef Name="Job_JobID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UniversityEmployee">
+          <End Role="Universities" Type="Self.Universities" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Universities">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="University_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Employers">
+          <End Role="Employers" Type="Self.Employers" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employers">
+              <PropertyRef Name="EmployerID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="EmployerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserEmployerConnection_Employers">
+          <End Role="Employers" Type="Self.Employers" Multiplicity="1" />
+          <End Role="UserEmployeeConnection" Type="Self.UserEmployeeConnection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employers">
+              <PropertyRef Name="EmployerID" />
+            </Principal>
+            <Dependent Role="UserEmployeeConnection">
+              <PropertyRef Name="EmployerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserEmployerConnection_Users'">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserEmployeeConnection" Type="Self.UserEmployeeConnection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserEmployeeConnection">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users'_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="CreateAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FirstName" Type="varchar" Mode="In" />
+          <Parameter Name="LastName" Type="varchar" Mode="In" />
+          <Parameter Name="EmployerID" Type="int" Mode="In" />
+          <Parameter Name="Username" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetCareerClusterEmployees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CCID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetCareerClusterJobChart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CCID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetCareerClusterSchoolChart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CCID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PasswordReset" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Username" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+          <Parameter Name="NewPassword" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="UserLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Username" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="WiredHackModelStoreContainer">
+          <EntitySet Name="CareerClusters" EntityType="Self.CareerClusters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeJobConnections" EntityType="Self.EmployeeJobConnections" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employers" EntityType="Self.Employers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Industries" EntityType="Self.Industries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JobCCConnections" EntityType="Self.JobCCConnections" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Jobs" EntityType="Self.Jobs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Majors" EntityType="Self.Majors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PayTypes" EntityType="Self.PayTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Programs" EntityType="Self.Programs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Universities" EntityType="Self.Universities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserEmployeeConnection" EntityType="Self.UserEmployeeConnection" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CareerClusterJobCCConnection" Association="Self.FK_CareerClusterJobCCConnection">
+            <End Role="CareerClusters" EntitySet="CareerClusters" />
+            <End Role="JobCCConnections" EntitySet="JobCCConnections" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeJobConnectionEmployee" Association="Self.FK_EmployeeJobConnectionEmployee">
+            <End Role="EmployeeJobConnections" EntitySet="EmployeeJobConnections" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeJobConnectionJob" Association="Self.FK_EmployeeJobConnectionJob">
+            <End Role="EmployeeJobConnections" EntitySet="EmployeeJobConnections" />
+            <End Role="Jobs" EntitySet="Jobs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IndustryEmployer" Association="Self.FK_IndustryEmployer">
+            <End Role="Industries" EntitySet="Industries" />
+            <End Role="Employers" EntitySet="Employers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobCCConnectionJob" Association="Self.FK_JobCCConnectionJob">
+            <End Role="JobCCConnections" EntitySet="JobCCConnections" />
+            <End Role="Jobs" EntitySet="Jobs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobEmployer" Association="Self.FK_JobEmployer">
+            <End Role="Jobs" EntitySet="Jobs" />
+            <End Role="Employers" EntitySet="Employers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobPayTypes" Association="Self.FK_JobPayTypes">
+            <End Role="Jobs" EntitySet="Jobs" />
+            <End Role="PayTypes" EntitySet="PayTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UniversityEmployee" Association="Self.FK_UniversityEmployee">
+            <End Role="Universities" EntitySet="Universities" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Employers" Association="Self.FK_User_Employers">
+            <End Role="Employers" EntitySet="Employers" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserEmployerConnection_Employers" Association="Self.FK_UserEmployerConnection_Employers">
+            <End Role="Employers" EntitySet="Employers" />
+            <End Role="UserEmployeeConnection" EntitySet="UserEmployeeConnection" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserEmployerConnection_Users'" Association="Self.FK_UserEmployerConnection_Users'">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserEmployeeConnection" EntitySet="UserEmployeeConnection" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users'_Employees" Association="Self.FK_Users'_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WiredHackModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="WiredHackEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="CareerClusters" EntityType="WiredHackModel.CareerCluster" />
+          <EntitySet Name="JobCCConnections" EntityType="WiredHackModel.JobCCConnection" />
+          <EntitySet Name="Employers" EntityType="WiredHackModel.Employer" />
+          <EntitySet Name="PayTypes" EntityType="WiredHackModel.PayTypes" />
+          <EntitySet Name="Jobs" EntityType="WiredHackModel.Job" />
+          <EntitySet Name="Employees" EntityType="WiredHackModel.Employee" />
+          <EntitySet Name="EmployeeJobConnections" EntityType="WiredHackModel.EmployeeJobConnection" />
+          <AssociationSet Name="JobEmployer" Association="WiredHackModel.JobEmployer">
+            <End Role="Job" EntitySet="Jobs" />
+            <End Role="Employer" EntitySet="Employers" />
+          </AssociationSet>
+          <AssociationSet Name="JobPayTypes" Association="WiredHackModel.JobPayTypes">
+            <End Role="Job" EntitySet="Jobs" />
+            <End Role="PayTypes" EntitySet="PayTypes" />
+          </AssociationSet>
+          <AssociationSet Name="CareerClusterJobCCConnection" Association="WiredHackModel.CareerClusterJobCCConnection">
+            <End Role="CareerCluster" EntitySet="CareerClusters" />
+            <End Role="JobCCConnection" EntitySet="JobCCConnections" />
+          </AssociationSet>
+          <AssociationSet Name="JobCCConnectionJob" Association="WiredHackModel.JobCCConnectionJob">
+            <End Role="JobCCConnection" EntitySet="JobCCConnections" />
+            <End Role="Job" EntitySet="Jobs" />
+          </AssociationSet>
+          <AssociationSet Name="EmployeeJobConnectionEmployee" Association="WiredHackModel.EmployeeJobConnectionEmployee">
+            <End Role="EmployeeJobConnection" EntitySet="EmployeeJobConnections" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="EmployeeJobConnectionJob" Association="WiredHackModel.EmployeeJobConnectionJob">
+            <End Role="EmployeeJobConnection" EntitySet="EmployeeJobConnections" />
+            <End Role="Job" EntitySet="Jobs" />
+          </AssociationSet>
+          <EntitySet Name="Industries" EntityType="WiredHackModel.Industry" />
+          <AssociationSet Name="IndustryEmployer" Association="WiredHackModel.IndustryEmployer">
+            <End Role="Industry" EntitySet="Industries" />
+            <End Role="Employer" EntitySet="Employers" />
+          </AssociationSet>
+          <EntitySet Name="Universities" EntityType="WiredHackModel.University" />
+          <AssociationSet Name="UniversityEmployee" Association="WiredHackModel.UniversityEmployee">
+            <End Role="University" EntitySet="Universities" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <EntitySet Name="Majors" EntityType="WiredHackModel.Major" />
+          <AssociationSet Name="MajorEmployee" Association="WiredHackModel.MajorEmployee">
+            <End Role="Major" EntitySet="Majors" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <EntitySet Name="UserEmployeeConnections" EntityType="WiredHackModel.UserEmployeeConnection" />
+          <EntitySet Name="Users" EntityType="WiredHackModel.User" />
+          <AssociationSet Name="FK_Users__Employees" Association="WiredHackModel.FK_Users__Employees">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="User1" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Employers" Association="WiredHackModel.FK_User_Employers">
+            <End Role="Employer" EntitySet="Employers" />
+            <End Role="User1" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserEmployerConnection_Employers" Association="WiredHackModel.FK_UserEmployerConnection_Employers">
+            <End Role="Employer" EntitySet="Employers" />
+            <End Role="UserEmployeeConnection" EntitySet="UserEmployeeConnections" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserEmployerConnection_Users_" Association="WiredHackModel.FK_UserEmployerConnection_Users_">
+            <End Role="User1" EntitySet="Users" />
+            <End Role="UserEmployeeConnection" EntitySet="UserEmployeeConnections" />
+          </AssociationSet>
+          <FunctionImport Name="CreateAccount">
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="EmployerID" Mode="In" Type="Int32" />
+            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PasswordReset">
+            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="NewPassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UserLogin" ReturnType="Collection(WiredHackModel.UserLogin_Result)">
+            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Programs" EntityType="WiredHackModel.Program" />
+          <FunctionImport Name="GetCareerClusterJobChart" ReturnType="Collection(WiredHackModel.GetCareerClusterJobChart_Result)">
+          <Parameter Name="CCID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetCareerClusterSchoolChart" ReturnType="Collection(WiredHackModel.GetCareerClusterSchoolChart_Result)">
+          <Parameter Name="CCID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetCareerClusterEmployees" ReturnType="Collection(WiredHackModel.GetCareerClusterEmployees_Result)">
+          <Parameter Name="CCID" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="CareerCluster">
+          <Key>
+            <PropertyRef Name="CCId" />
+          </Key>
+          <Property Name="CCId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="JobCCConnections" Relationship="WiredHackModel.CareerClusterJobCCConnection" FromRole="CareerCluster" ToRole="JobCCConnection" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="JobCCConnection">
+          <Key>
+            <PropertyRef Name="ConID" />
+          </Key>
+          <Property Name="ConID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobID" Type="Int32" Nullable="false" />
+          <Property Name="CCID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CareerCluster" Relationship="WiredHackModel.CareerClusterJobCCConnection" FromRole="JobCCConnection" ToRole="CareerCluster" />
+          <NavigationProperty Name="Jobs" Relationship="WiredHackModel.JobCCConnectionJob" FromRole="JobCCConnection" ToRole="Job" />
+        </EntityType>
+        <EntityType Name="Employer">
+          <Key>
+            <PropertyRef Name="EmployerID" />
+          </Key>
+          <Property Name="EmployerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Address2" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Zip" Type="Int32" Nullable="false" />
+          <Property Name="County" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Job" Relationship="WiredHackModel.JobEmployer" FromRole="Employer" ToRole="Job" />
+          <Property Name="IndustryID" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Industry" Relationship="WiredHackModel.IndustryEmployer" FromRole="Employer" ToRole="Industry" />
+          <Property Name="AmtOfEmployees" Type="Int32" />
+          <Property Name="Logo" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Users" Relationship="WiredHackModel.FK_User_Employers" FromRole="Employer" ToRole="User1" />
+          <NavigationProperty Name="UserEmployeeConnections" Relationship="WiredHackModel.FK_UserEmployerConnection_Employers" FromRole="Employer" ToRole="UserEmployeeConnection" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="NumEmployees" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PayTypes">
+          <Key>
+            <PropertyRef Name="PayTypeID" />
+          </Key>
+          <Property Name="PayTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Job" Relationship="WiredHackModel.JobPayTypes" FromRole="PayTypes" ToRole="Job" />
+        </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="JobID" />
+          </Key>
+          <Property Name="JobID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployerID" Type="Int32" />
+          <Property Name="BaseSalary" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="PayTypeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employers" Relationship="WiredHackModel.JobEmployer" FromRole="Job" ToRole="Employer" />
+          <NavigationProperty Name="PayTypes" Relationship="WiredHackModel.JobPayTypes" FromRole="Job" ToRole="PayTypes" />
+          <NavigationProperty Name="JobCCConnection" Relationship="WiredHackModel.JobCCConnectionJob" FromRole="Job" ToRole="JobCCConnection" />
+          <NavigationProperty Name="EmployeeJobConnection" Relationship="WiredHackModel.EmployeeJobConnectionJob" FromRole="Job" ToRole="EmployeeJobConnection" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="JobID" Type="Int32" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Zip" Type="Int32" Nullable="false" />
+          <Property Name="County" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="EmployeeJobConnection" Relationship="WiredHackModel.EmployeeJobConnectionEmployee" FromRole="Employee" ToRole="EmployeeJobConnection" />
+          <Property Name="Image" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ProgramID" Type="Int32" />
+          <Property Name="UniversityID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="University" Relationship="WiredHackModel.UniversityEmployee" FromRole="Employee" ToRole="University" />
+          <Property Name="MajorID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Major" Relationship="WiredHackModel.MajorEmployee" FromRole="Employee" ToRole="Major" />
+          <Property Name="GraduationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Users" Relationship="WiredHackModel.FK_Users__Employees" FromRole="Employee" ToRole="User1" />
+          <Property Name="Bio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="EmployeeJobConnection">
+          <Key>
+            <PropertyRef Name="ConID" />
+          </Key>
+          <Property Name="ConID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobId" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="WiredHackModel.EmployeeJobConnectionEmployee" FromRole="EmployeeJobConnection" ToRole="Employee" />
+          <NavigationProperty Name="Jobs" Relationship="WiredHackModel.EmployeeJobConnectionJob" FromRole="EmployeeJobConnection" ToRole="Job" />
+          <Property Name="PayRate" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="JobEmployer">
+          <End Type="WiredHackModel.Job" Role="Job" Multiplicity="1" />
+          <End Type="WiredHackModel.Employer" Role="Employer" Multiplicity="*" />
+        </Association>
+        <Association Name="JobPayTypes">
+          <End Type="WiredHackModel.Job" Role="Job" Multiplicity="1" />
+          <End Type="WiredHackModel.PayTypes" Role="PayTypes" Multiplicity="*" />
+        </Association>
+        <Association Name="CareerClusterJobCCConnection">
+          <End Type="WiredHackModel.CareerCluster" Role="CareerCluster" Multiplicity="1" />
+          <End Type="WiredHackModel.JobCCConnection" Role="JobCCConnection" Multiplicity="*" />
+        </Association>
+        <Association Name="JobCCConnectionJob">
+          <End Type="WiredHackModel.JobCCConnection" Role="JobCCConnection" Multiplicity="1" />
+          <End Type="WiredHackModel.Job" Role="Job" Multiplicity="*" />
+        </Association>
+        <Association Name="EmployeeJobConnectionEmployee">
+          <End Type="WiredHackModel.EmployeeJobConnection" Role="EmployeeJobConnection" Multiplicity="1" />
+          <End Type="WiredHackModel.Employee" Role="Employee" Multiplicity="*" />
+        </Association>
+        <Association Name="EmployeeJobConnectionJob">
+          <End Type="WiredHackModel.EmployeeJobConnection" Role="EmployeeJobConnection" Multiplicity="1" />
+          <End Type="WiredHackModel.Job" Role="Job" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Industry">
+          <Key>
+            <PropertyRef Name="IndustryId" />
+          </Key>
+          <Property Name="IndustryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Employers" Relationship="WiredHackModel.IndustryEmployer" FromRole="Industry" ToRole="Employer" />
+        </EntityType>
+        <Association Name="IndustryEmployer">
+          <End Type="WiredHackModel.Industry" Role="Industry" Multiplicity="1" />
+          <End Type="WiredHackModel.Employer" Role="Employer" Multiplicity="*" />
+        </Association>
+        <EntityType Name="University">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Zip" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="County" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Logo" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Employees" Relationship="WiredHackModel.UniversityEmployee" FromRole="University" ToRole="Employee" />
+        </EntityType>
+        <Association Name="UniversityEmployee">
+          <End Type="WiredHackModel.University" Role="University" Multiplicity="1" />
+          <End Type="WiredHackModel.Employee" Role="Employee" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Major">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Employees" Relationship="WiredHackModel.MajorEmployee" FromRole="Major" ToRole="Employee" />
+        </EntityType>
+        <Association Name="MajorEmployee">
+          <End Type="WiredHackModel.Major" Role="Major" Multiplicity="1" />
+          <End Type="WiredHackModel.Employee" Role="Employee" Multiplicity="*" />
+        </Association>
+        <EntityType Name="UserEmployeeConnection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
+          <Property Name="EmployerID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employer" Relationship="WiredHackModel.FK_UserEmployerConnection_Employers" FromRole="UserEmployeeConnection" ToRole="Employer" />
+          <NavigationProperty Name="User" Relationship="WiredHackModel.FK_UserEmployerConnection_Users_" FromRole="UserEmployeeConnection" ToRole="User1" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeId" Type="Int32" />
+          <Property Name="EmployerId" Type="Int32" />
+          <Property Name="Username" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Salt" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employee" Relationship="WiredHackModel.FK_Users__Employees" FromRole="User1" ToRole="Employee" />
+          <NavigationProperty Name="Employer" Relationship="WiredHackModel.FK_User_Employers" FromRole="User1" ToRole="Employer" />
+          <NavigationProperty Name="UserEmployeeConnections" Relationship="WiredHackModel.FK_UserEmployerConnection_Users_" FromRole="User1" ToRole="UserEmployeeConnection" />
+        </EntityType>
+        <Association Name="FK_Users__Employees">
+          <End Type="WiredHackModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="WiredHackModel.User" Role="User1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User1">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Employers">
+          <End Type="WiredHackModel.Employer" Role="Employer" Multiplicity="0..1" />
+          <End Type="WiredHackModel.User" Role="User1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employer">
+              <PropertyRef Name="EmployerID" />
+            </Principal>
+            <Dependent Role="User1">
+              <PropertyRef Name="EmployerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserEmployerConnection_Employers">
+          <End Type="WiredHackModel.Employer" Role="Employer" Multiplicity="1" />
+          <End Type="WiredHackModel.UserEmployeeConnection" Role="UserEmployeeConnection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employer">
+              <PropertyRef Name="EmployerID" />
+            </Principal>
+            <Dependent Role="UserEmployeeConnection">
+              <PropertyRef Name="EmployerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserEmployerConnection_Users_">
+          <End Type="WiredHackModel.User" Role="User1" Multiplicity="1" />
+          <End Type="WiredHackModel.UserEmployeeConnection" Role="UserEmployeeConnection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User1">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserEmployeeConnection">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="UserLogin_Result">
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="EmployeeID" Nullable="true" />
+          <Property Type="Int32" Name="EmployerID" Nullable="true" />
+          <Property Type="String" Name="Username" Nullable="true" MaxLength="250" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <EntityType Name="Program">
+          <Key>
+            <PropertyRef Name="ProgramID" />
+          </Key>
+          <Property Name="ProgramID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MajorID" Type="Int32" />
+        </EntityType>
+        <ComplexType Name="GetCareerClusterJobChart_Result">
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" />
+          <Property Type="Int32" Name="count" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetCareerClusterSchoolChart_Result">
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="Int32" Name="count" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetCareerClusterEmployees_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="FirstName" Nullable="false" />
+          <Property Type="String" Name="LastName" Nullable="false" />
+          <Property Type="Int32" Name="JobID" Nullable="true" />
+          <Property Type="String" Name="Address" Nullable="false" />
+          <Property Type="String" Name="City" Nullable="false" />
+          <Property Type="String" Name="State" Nullable="false" />
+          <Property Type="Int32" Name="Zip" Nullable="false" />
+          <Property Type="String" Name="County" Nullable="true" />
+          <Property Type="String" Name="Image" Nullable="false" />
+          <Property Type="Int32" Name="ProgramID" Nullable="true" />
+          <Property Type="Int32" Name="UniversityID" Nullable="false" />
+          <Property Type="Int32" Name="MajorID" Nullable="false" />
+          <Property Type="Int32" Name="EmployeeJobConnection_ConID" Nullable="true" />
+          <Property Type="Int32" Name="University_Id" Nullable="false" />
+          <Property Type="Int32" Name="Major_Id" Nullable="false" />
+          <Property Type="DateTime" Name="GraduationDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Bio" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WiredHackModelStoreContainer" CdmEntityContainer="WiredHackEntities">
+    <EntitySetMapping Name="CareerClusters">
+      <EntityTypeMapping TypeName="IsTypeOf(WiredHackModel.CareerCluster)">
+        <MappingFragment StoreEntitySet="CareerClusters">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CCId" ColumnName="CCId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JobCCConnections">
+      <EntityTypeMapping TypeName="IsTypeOf(WiredHackModel.JobCCConnection)">
+        <MappingFragment StoreEntitySet="JobCCConnections">
+          <ScalarProperty Name="ConID" ColumnName="ConID" />
+          <ScalarProperty Name="JobID" ColumnName="JobID" />
+          <ScalarProperty Name="CCID" ColumnName="CCID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employers">
+      <EntityTypeMapping TypeName="IsTypeOf(WiredHackModel.Employer)">
+        <MappingFragment StoreEntitySet="Employers">
+          <ScalarProperty Name="NumEmployees" ColumnName="NumEmployees" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="EmployerID" ColumnName="EmployerID" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Zip" ColumnName="Zip" />
+          <ScalarProperty Name="County" ColumnName="County" />
+          <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
+          <ScalarProperty Name="AmtOfEmployees" ColumnName="AmtOfEmployees" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PayTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(WiredHackModel.PayTypes)">
+        <MappingFragment StoreEntitySet="PayTypes">
+          <ScalarProperty Name="PayTypeID" ColumnName="PayTypeID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Jobs">
+      <EntityTypeMapping TypeName="IsTypeOf(WiredHackModel.Job)">
+        <MappingFragment StoreEntitySet="Jobs">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+          <ScalarProperty Name="EmployerID" ColumnName="EmployerID" />
+          <ScalarProperty Name="BaseSalary" ColumnName="BaseSalary" />
+          <ScalarProperty Name="PayTypeID" ColumnName="PayTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeeJobConnections">
+      <EntityTypeMapping TypeName="IsTypeOf(WiredHackModel.EmployeeJobConnection)">
+        <MappingFragment StoreEntitySet="EmployeeJobConnections">
+          <ScalarProperty Name="ConID" ColumnName="ConID" />
+          <ScalarProperty Name="JobId" ColumnName="JobId" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="PayRate" ColumnName="PayRate" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Industries">
+      <EntityTypeMapping TypeName="IsTypeOf(WiredHackModel.Industry)">
+        <MappingFragment StoreEntitySet="Industries">
+          <ScalarProperty Name="IndustryId" ColumnName="IndustryId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Universities">
+      <EntityTypeMapping TypeName="IsTypeOf(WiredHackModel.University)">
+        <MappingFragment StoreEntitySet="Universities">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Zip" ColumnName="Zip" />
+          <ScalarProperty Name="County" ColumnName="County" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Majors">
+      <EntityTypeMapping TypeName="IsTypeOf(WiredHackModel.Major)">
+        <MappingFragment StoreEntitySet="Majors">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="JobEmployer" TypeName="WiredHackModel.JobEmployer" StoreEntitySet="Employers">
+      <EndProperty Name="Job">
+        <ScalarProperty Name="JobID" ColumnName="Job_JobID" />
+      </EndProperty>
+      <EndProperty Name="Employer">
+        <ScalarProperty Name="EmployerID" ColumnName="EmployerID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="JobPayTypes" TypeName="WiredHackModel.JobPayTypes" StoreEntitySet="PayTypes">
+      <EndProperty Name="Job">
+        <ScalarProperty Name="JobID" ColumnName="Job_JobID" />
+      </EndProperty>
+      <EndProperty Name="PayTypes">
+        <ScalarProperty Name="PayTypeID" ColumnName="PayTypeID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CareerClusterJobCCConnection" TypeName="WiredHackModel.CareerClusterJobCCConnection" StoreEntitySet="JobCCConnections">
+      <EndProperty Name="CareerCluster">
+        <ScalarProperty Name="CCId" ColumnName="CareerCluster_CCId" />
+      </EndProperty>
+      <EndProperty Name="JobCCConnection">
+        <ScalarProperty Name="ConID" ColumnName="ConID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="JobCCConnectionJob" TypeName="WiredHackModel.JobCCConnectionJob" StoreEntitySet="Jobs">
+      <EndProperty Name="JobCCConnection">
+        <ScalarProperty Name="ConID" ColumnName="JobCCConnection_ConID" />
+      </EndProperty>
+      <EndProperty Name="Job">
+        <ScalarProperty Name="JobID" ColumnName="JobID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="EmployeeJobConnectionEmployee" TypeName="WiredHackModel.EmployeeJobConnectionEmployee" StoreEntitySet="Employees">
+      <EndProperty Name="EmployeeJobConnection">
+        <ScalarProperty Name="ConID" ColumnName="EmployeeJobConnection_ConID" />
+      </EndProperty>
+      <EndProperty Name="Employee">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="EmployeeJobConnectionJob" TypeName="WiredHackModel.EmployeeJobConnectionJob" StoreEntitySet="Jobs">
+      <EndProperty Name="EmployeeJobConnection">
+        <ScalarProperty Name="ConID" ColumnName="EmployeeJobConnection_ConID" />
+      </EndProperty>
+      <EndProperty Name="Job">
+        <ScalarProperty Name="JobID" ColumnName="JobID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="IndustryEmployer" TypeName="WiredHackModel.IndustryEmployer" StoreEntitySet="Employers">
+      <EndProperty Name="Industry">
+        <ScalarProperty Name="IndustryId" ColumnName="Industry_IndustryId" />
+      </EndProperty>
+      <EndProperty Name="Employer">
+        <ScalarProperty Name="EmployerID" ColumnName="EmployerID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UniversityEmployee" TypeName="WiredHackModel.UniversityEmployee" StoreEntitySet="Employees">
+      <EndProperty Name="University">
+        <ScalarProperty Name="Id" ColumnName="University_Id" />
+      </EndProperty>
+      <EndProperty Name="Employee">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="MajorEmployee" TypeName="WiredHackModel.MajorEmployee" StoreEntitySet="Employees">
+      <EndProperty Name="Major">
+        <ScalarProperty Name="Id" ColumnName="Major_Id" />
+      </EndProperty>
+      <EndProperty Name="Employee">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="IsTypeOf(WiredHackModel.Employee)">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="Bio" ColumnName="Bio" />
+                <ScalarProperty Name="GraduationDate" ColumnName="GraduationDate" />
+                <ScalarProperty Name="MajorID" ColumnName="MajorID" />
+                <ScalarProperty Name="UniversityID" ColumnName="UniversityID" />
+                <ScalarProperty Name="ProgramID" ColumnName="ProgramID" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="County" ColumnName="County" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserEmployeeConnections">
+            <EntityTypeMapping TypeName="WiredHackModel.UserEmployeeConnection">
+              <MappingFragment StoreEntitySet="UserEmployeeConnection">
+                <ScalarProperty Name="EmployerID" ColumnName="EmployerID" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="WiredHackModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="Salt" ColumnName="Salt" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="EmployerId" ColumnName="EmployerId" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CreateAccount" FunctionName="WiredHackModel.Store.CreateAccount" />
+          <FunctionImportMapping FunctionImportName="PasswordReset" FunctionName="WiredHackModel.Store.PasswordReset" />
+          <FunctionImportMapping FunctionImportName="UserLogin" FunctionName="WiredHackModel.Store.UserLogin">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WiredHackModel.UserLogin_Result">
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="EmployerID" ColumnName="EmployerID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Programs">
+            <EntityTypeMapping TypeName="WiredHackModel.Program">
+              <MappingFragment StoreEntitySet="Programs">
+                <ScalarProperty Name="MajorID" ColumnName="MajorID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ProgramID" ColumnName="ProgramID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetCareerClusterJobChart" FunctionName="WiredHackModel.Store.GetCareerClusterJobChart">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WiredHackModel.GetCareerClusterJobChart_Result">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="count" ColumnName="count" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetCareerClusterSchoolChart" FunctionName="WiredHackModel.Store.GetCareerClusterSchoolChart">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WiredHackModel.GetCareerClusterSchoolChart_Result">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="count" ColumnName="count" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetCareerClusterEmployees" FunctionName="WiredHackModel.Store.GetCareerClusterEmployees">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WiredHackModel.GetCareerClusterEmployees_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="County" ColumnName="County" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="ProgramID" ColumnName="ProgramID" />
+                <ScalarProperty Name="UniversityID" ColumnName="UniversityID" />
+                <ScalarProperty Name="MajorID" ColumnName="MajorID" />
+                <ScalarProperty Name="EmployeeJobConnection_ConID" ColumnName="EmployeeJobConnection_ConID" />
+                <ScalarProperty Name="University_Id" ColumnName="University_Id" />
+                <ScalarProperty Name="Major_Id" ColumnName="Major_Id" />
+                <ScalarProperty Name="GraduationDate" ColumnName="GraduationDate" />
+                <ScalarProperty Name="Bio" ColumnName="Bio" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="True" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

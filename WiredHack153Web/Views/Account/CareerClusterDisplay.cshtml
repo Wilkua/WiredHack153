@@ -1,0 +1,20 @@
+﻿@model WiredHack153Web.Models.AccountDisplayViewModel
+@{
+    ViewBag.Title = "CareerClusterDisplay";
+    Layout = "~/Views/Shared/_LayoutAccountInfo.cshtml";
+}
+
+<div class="jumbotron">
+    <div class="row">
+        <img class="accountImage col-md-4" src="http://i1.wp.com/www.techrepublic.com/bundles/techrepubliccore/images/icons/standard/icon-user-default.png"/>
+
+        <div class="accountInfo col-md-8">
+            <h2>@Model.ClustClusterName</h2>
+            <p>@Model.ClustClusterDescription</p>
+
+        </div>
+    </div>
+</div>
+<div class="well">
+    <h1>Users with jobs from that cluster</h1>
+</div>

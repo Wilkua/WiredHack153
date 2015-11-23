@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div id="rowcontainer">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Name</h3>
+        </div>
+        <div class="col-md-3" id="SchoolChart1">
+            <div id="container"></div>
+        </div>
+        <div class="col-md-3" id="JobChart1">
+            <div id="container"></div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    var CareerClusterList;
+
+    function GetCareerClusters()
+    {
+        var defer = $.Deferred();
+
+        $.ajax({
+            method: 'GET',
+            url: '/API/CareerClusters'
+        }).done(function (result) {
+            CareerClusterList = JSON.parse(result);
+            console.log("yes");
+            defer.resolve();
+        }).fail(function (result) {
+            console.log("no");
+            defer.reject();
+        });
+
+        return defer.promise();
+    }
+
+    function GenerateSchoolInfoChart(id)
+    {
+        $.ajax({
+            method: "GET",
+            url: "/API/SchoolChart?ccid=" + id
+        }).done(function (result) {
+            $('#SchoolChart' + id).highcharts(JSON.parse(result));
+        });
+    }
+
+    function GenerateJobInfoChart(id)
+    {
+        $.ajax({
+            method: "GET",
+            url: "/API/JobsChart?ccid=" + id
+        }).done(function (result) {
+            $('#JobChart' + id).highcharts(JSON.parse(result));
+        });
+    }
+
+    function GenerateRows()
+    {
+        $.ajax({
+            method: "GET",
+            url: "/API/CareerClusters"
+        }).done(function (result) {
+            for (var idx in JSON.parse(result))
+            {
+                var $container = $('#rowcontainer');
+                var item = JSON.parse(result)[idx];
+                var $div = $("<div>", { id: "row" + item.CCId, class: "row" });
+                $div.append($('<div>', { class: 'col-md-6' }));
+                $div.append($('<div>', { id: 'SchoolChart' + item.CCId, class: 'col-md-3' }));
+                $div.append($('<div>', { id: 'JobChart' + item.CCId, class: 'col-md-3' }));
+                $container.append($div);
+            }
+        });
+    }
+
+    $(function () {
+        GenerateRows();
+        GenerateSchoolInfoChart(1);
+        GenerateJobInfoChart(1);
+    })
+</script>

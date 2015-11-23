@@ -1,0 +1,40 @@
+﻿@model WiredHack153Web.Models.AccountDisplayViewModel
+@{
+    ViewBag.Title = "Account Name";
+    Layout = "~/Views/Shared/_LayoutAccountInfo.cshtml";
+}
+<div class="jumbotron">
+    <div class="row">
+        <img class="accountImage col-md-4" src="@{
+                                                    if (Model.AccImage.Equals(""))
+                                                    {
+                                                        @Html.Raw("http://i1.wp.com/www.techrepublic.com/bundles/techrepubliccore/images/icons/standard/icon-user-default.png")
+                                                    }
+                                                    else
+                                                    {
+                                                        @Html.Raw(Model.AccImage)
+                                                    }}"/>
+
+        <div class="accountInfo col-md-8">
+            <h2> @Model.AccFirstName @Model.AccLastName </h2>
+            <p> @Model.AccAddress </p>
+            <p>@Model.AccCity @Model.AccState, @Model.AccZip</p>
+            <p>@Model.AccCounty</p>
+        </div>
+    </div>
+    <div class="section">
+        @Model.AccBio
+    </div>
+</div>
+    <div class="well">
+        <div class="page-header">
+            <h2>School Info</h2>
+        </div>
+            @Html.Partial("DisplayPartials/_SchoolPartial")
+    </div>
+    <div class="well" style="margin-top: 10px;">
+        <div class="page-header">
+            <h2>Job Info</h2>
+        </div>
+        @Html.Partial("DisplayPartials/_JobPartial")
+</div>

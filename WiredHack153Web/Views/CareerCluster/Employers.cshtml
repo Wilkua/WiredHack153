@@ -1,0 +1,100 @@
+﻿@model IEnumerable <WiredHack153Web.Models.EmployerDetails>
+@{
+    ViewBag.Title = "Employers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    #Content {
+        position: absolute;
+        width: 70%;
+        left: 15%;
+        border: 1px solid black;
+    }
+
+    #ContentHeader {
+        padding-top: 15px;
+        padding-left: 25px;
+    }
+
+    #ClusterWrapper {
+        padding: 25px;
+        padding-top: 5px;
+    }
+
+    .ClusterPanel {
+        height: 125px;
+        border: 1px solid black;
+    }
+
+    .ClusterInfo {
+        display: block;
+        float: left;
+        width: 34%;
+    }
+
+    .Padding10 {
+        padding: 10px;
+    }
+
+    .Bold {
+        font-weight: bold;
+    }
+
+    .ChartContentPanel {
+        display: block;
+        width: 33%;
+        height: 100%;
+    }
+
+    .FloatLeft {
+        float: left;
+    }
+
+    .ChartPanel {
+        position: relative;
+        top: 0px;
+        right: 0;
+        background-color: purple;
+        height: 100%;
+        width: 55%;
+    }
+</style>
+<script>
+
+</script>
+
+<div id="Content">
+    <div id="ContentHeader">
+        <span class="Bold">Employers</span>
+    </div>
+    <div id="ClusterWrapper">
+        @foreach (var item in Model)
+        {
+            
+                <div class="ClusterPanel">
+                    <div class="ClusterInfo FloatLeft">
+                            <span class="Padding10 Bold">@item.EmployerName</span><br />
+                            <span class="ClusterDescription Padding10">@item.Industry</span><br />
+                            <span class="ClusterDescription Padding10">@item.NumOfEmployees</span>
+</div>
+                    <div class="ChartContentPanel FloatLeft">
+                        <span class="ChartHeader FloatLeft Bold">Top 5 Jobs</span>
+                        <div class="ChartPanel FloatLeft" id="">
+
+                        </div>
+                    </div>
+                    <div class="ChartContentPanel FloatLeft">
+                        <span class="ChartHeader FloatLeft Bold">Top 5 Schools</span>
+                        <div class="ChartPanel FloatLeft" id="">
+                        </div>
+
+
+                        </div>
+                    </div>
+        }
+    </div>
+
+
+
+

@@ -1,0 +1,29 @@
+﻿<div class="row">
+    <img class="col-md-4" src="@{
+                                                    if (Model.EmployerLogo.Equals(""))
+                                                    {
+                                                        @Html.Raw("http://i1.wp.com/www.techrepublic.com/bundles/techrepubliccore/images/icons/standard/icon-user-default.png")
+                                                    }
+                                                    else
+                                                    {
+                                                        @Html.Raw(Model.EmployerLogo)
+                                                    }}" />
+    <div class="col-md-8">
+
+        <h2><a href="@Url.Action("EmployerDisplay", "Account")?Id=@Model.EmployerId">@Model.EmployerName</a></h2>
+        <p>@Html.Raw(@Model.EmployerAddress)</p>
+        <p>@Model.EmployerCity @Model.EmployerState, @Model.EmployerZip</p>
+        <p>@Model.EmployerCounty</p>
+        <p>@Model.EmployerDescription</p>
+        <p>@Model.EmployerPhone</p>
+        <p>Num of Employees: @Model.EmployerAmtOfEmployees</p>
+        <p>Industry</p>
+        <p>Description</p>
+        <p>Num of employees</p>
+    </div>
+</div>
+<div>
+    
+
+
+</div>
